@@ -7,13 +7,13 @@ if [ ! -f /etc/apache2/ssl/server.key ]; then
 	DOMAIN=$(hostname)
 	export PASSPHRASE=$(head -c 128 /dev/urandom  | uuencode - | grep -v "^end" | tr "\n" "d")
 	SUBJ="
-C=US
-ST=New York
-O=None
-localityName=New York
+C=CL
+ST=Valparaiso
+O=datactil
+localityName=Valparaiso
 commonName=$DOMAIN
 organizationalUnitName=
-emailAddress=myemail@example.com
+emailAddress=contacto@datactil.com
 "
 	openssl genrsa -des3 -out /etc/apache2/ssl/server.key -passout env:PASSPHRASE 2048
 	openssl req -new -batch -subj "$(echo -n "$SUBJ" | tr "\n" "/")" -key $KEY -out /tmp/$DOMAIN.csr -passin env:PASSPHRASE 

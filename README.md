@@ -14,6 +14,9 @@ boot2docker ip
 # run with ssl
 docker run -d -p 443:443 owncloud
 
+# run with ssl and persistance (be sure to chown www-data /my/mount/point/*)
+docker run -d -p 443:443 -v /my/mount/point/data:/var/www/owncloud/data -v /my/mount/point/mysql:/var/lib/mysql owncloud
+
 # show all containers
 docker ps -a 
 
